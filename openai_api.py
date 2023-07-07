@@ -1,0 +1,14 @@
+import openai
+
+
+class OpenAI_API:
+    def __init__(self, api_key, model):
+        openai.api_key = api_key
+        self.model = model
+
+    def generate_reply(self, conversation):
+        response = openai.ChatCompletion.create(
+            model=self.model,
+            messages=conversation.get_conversation()
+        )
+        return response['choices'][0]['message']['content']
