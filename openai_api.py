@@ -11,4 +11,5 @@ class OpenAI_API:
             model=self.model,
             messages=conversation.get_conversation()
         )
-        return response['choices'][0]['message']['content']
+        token_count = response['usage']['total_tokens']
+        return response.choices[0].message['content'], token_count
